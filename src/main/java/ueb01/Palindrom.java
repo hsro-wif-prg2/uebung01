@@ -4,29 +4,41 @@ class Palindrom {
 	static boolean istPalindrom(String s) {
 		// Verwenden Sie die Klasse CharStackImpl um auf Palindrom zu testen!
 
-		s = s.replaceAll("\\s+","");
+		CharStackImpl ch1 = new CharStackImpl();
+
+		// Buchstaben umwandeln. Leerzeichen entfernen
+		s = s.replaceAll("\\s+", "");
 		s = s.toLowerCase();
+		String reverse = "";
 
-		if(s == null)
-			throw new NullPointerException();
+		// String spliten
+		char[] sChar = s.toCharArray();
 
-		int length = s.length();
-
-		// Wenn String nur eine Buchstabe dann true
-		if (length < 2) // If the string only has 1 char or is empty
-			return true;
-
-		else {
-
-		// Wenn die erste Buchstabe mit der letzten nicht übereinstimmt dann false
-			if (s.charAt(0) != s.charAt(length - 1))
-				return false;
-
-		//		// Function call for string with the two ends snipped off
-			else
-				return istPalindrom(s.substring(1, length - 1));
+		//Char Array mit werte füllen  -> push Methode aufrufen
+		for (int i = 0; i < sChar.length; i++) {
+			ch1.push(sChar[i]);
 		}
 
+		if (ch1.size() == 0)
+			throw new NullPointerException();
 
+		// Wenn nur zwei Buchtaben, dann immer True
+		if (ch1.size() < 2)
+			return true;
+
+		// Wenn länge größer als zwei, buchstaben durch "pop()" entfernen und in dem String "reverse" speichern
+		if (ch1.size() >= 2) {
+
+			while (ch1.size() != 0) {
+				reverse = reverse + ch1.pop();
+			}
+		// Zwei String-Objekte miteinander vergleichen, bei gleichheit True ausgeben
+			if (s.equals(reverse))
+
+			return true;
+
+		}
+
+		return false;
 	}
 }
