@@ -1,10 +1,10 @@
 package ueb01;
 
-class CharElement {
+public class CharElement {
     char value;
     CharElement next;
-    CharElement(char c, CharElement n) {
+    CharElement(char c, CharElement e){
         value = c;
-        next = n;
+        next = e;
     }
 }

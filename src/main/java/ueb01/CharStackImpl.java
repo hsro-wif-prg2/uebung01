@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 
 public class CharStackImpl implements CharStack {
     private CharElement top;
+
     @Override
     public void push(char c) {
         top = new CharElement(c, top);
@@ -11,9 +12,8 @@ public class CharStackImpl implements CharStack {
 
     @Override
     public char pop() {
-        if(top == null) {
-            throw new NoSuchElementException("keine Elemente!");
-        }
+        if(top == null)
+            throw new NoSuchElementException();
         char v = top.value;
         top = top.next;
         return v;
@@ -21,12 +21,12 @@ public class CharStackImpl implements CharStack {
 
     @Override
     public int size() {
-        int n = 0;
+        int i = 0;
         CharElement it = top;
-        while (it != null) {
-                n++;
-                it = it.next;
+        while(it != null) {
+            i++;
+            it = it.next;
         }
-        return n;
+        return i;
     }
 }
